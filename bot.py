@@ -38,9 +38,9 @@ def start(update,context):
     global first
     first=update.message.chat.first_name
     keybord1 = [[InlineKeyboardButton("Owner 👨‍💻", url=f"https://t.me/{OWNER}"),
-                 InlineKeyboardButton("Tutorial 📺", url="https://youtu.be/7yqjm-DCaXE")]]
+                 InlineKeyboardButton("Tutorial 📺", url="https://7789bets.com")]]
     reply_markup = InlineKeyboardMarkup(keybord1)
-    update.message.reply_text('Hi! '+str(first)+' \n\nWelcome to OCR Bot.\n\nJust send a clear image to me and i will recognize the text in the image and send it as a message!\n\nCheck /help for more...\n\nCreate your Own Bot by Watching Tutorial', reply_markup=reply_markup)
+    update.message.reply_text('Hi! '+str(first)+' \n\nChào mừng đến với Bot Quét Ảnh\n\nBot được tạo bởi 789bet!\n\nGõ /help để nhận trợ giúp...\n\n', reply_markup=reply_markup)
 
 def help(update,context):
     """Send a message when the command /help is issued."""
@@ -50,7 +50,8 @@ def help(update,context):
                  InlineKeyboardButton("Tutorial 📺", url="https://youtu.be/7yqjm-DCaXE")]]
     reply_markup = InlineKeyboardMarkup(keybord1)
     update.message.reply_text('Hi! '+str(first)+' \n\nFollow these steps...\n➥ First Send me a Clear Image to me \n➥ Select the Language to Extract Selected Language Text in Image \n➥ Extracted Text is Uploaded as Message!', reply_markup=reply_markup)
-
+def eng():
+    callback_data('eng')
 
 @run_async
 @send_typing_action
@@ -109,7 +110,9 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
+    dp.add_handler(CommandHandler('eng',eng))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
+
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
     updater.idle()
