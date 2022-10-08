@@ -1,5 +1,6 @@
 # ©️ @Deccan_Botz 
 
+from enum import auto
 from telegram import ChatAction,InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters,CallbackQueryHandler,PicklePersistence
@@ -64,7 +65,7 @@ def convert_image(update,context):
                      InlineKeyboardButton("Vietnamese", callback_data='vie')     
                      ]]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        update.message.reply_text("Select the Language Here 👇", reply_markup=reply_markup)
+        update.message.reply_text("Ai gửi ảnh thì bấm vào đây 👇", reply_markup=reply_markup)
 
 @run_async
 def button(update,context):
@@ -87,7 +88,6 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
-
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
