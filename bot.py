@@ -61,29 +61,7 @@ def convert_image(update,context):
         context.user_data['filepath']=file
         keyboard =  [
                      [
-                     InlineKeyboardButton("English", callback_data='eng'),
-                     InlineKeyboardButton("Finnish", callback_data='fin'),
-                     InlineKeyboardButton("French", callback_data='fre')
-                     ],
-                     [
-                     InlineKeyboardButton("German", callback_data='ger'),
-                     InlineKeyboardButton("Greek", callback_data='gre'),
-                     InlineKeyboardButton("Hungarian", callback_data='hun')
-                     ],
-                     [
-                     InlineKeyboardButton("Korean", callback_data='kor'),
-                     InlineKeyboardButton("Italian", callback_data='ita'),
-                     InlineKeyboardButton("Japanese", callback_data='jpn')
-                     ],
-                     [
-                     InlineKeyboardButton("Polish", callback_data='pol'),
-                     InlineKeyboardButton("Portuguese", callback_data='por'),
-                     InlineKeyboardButton("Russian", callback_data='rus')
-                     ],
-                     [
-                     InlineKeyboardButton("Spanish", callback_data='spa'),
-                     InlineKeyboardButton("Swedish", callback_data='swe'),
-                     InlineKeyboardButton("Vietnamese", callback_data='vie')
+                     InlineKeyboardButton("Vietnamese", callback_data='vie')     
                      ]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.message.reply_text("Select the Language Here 👇", reply_markup=reply_markup)
