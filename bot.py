@@ -59,10 +59,32 @@ def convert_image(update,context):
         newFile=context.bot.get_file(file_id)
         file= newFile.file_path
         context.user_data['filepath']=file
-        keyboard =  [[
-                     InlineKeyboardButton("English", callback_data='eng')
-                     ]
-                     ]
+        keyboard =  [
+                     [
+                     InlineKeyboardButton("English", callback_data='eng'),
+                     InlineKeyboardButton("Finnish", callback_data='fin'),
+                     InlineKeyboardButton("French", callback_data='fre')
+                     ],
+                     [
+                     InlineKeyboardButton("German", callback_data='ger'),
+                     InlineKeyboardButton("Greek", callback_data='gre'),
+                     InlineKeyboardButton("Hungarian", callback_data='hun')
+                     ],
+                     [
+                     InlineKeyboardButton("Korean", callback_data='kor'),
+                     InlineKeyboardButton("Italian", callback_data='ita'),
+                     InlineKeyboardButton("Japanese", callback_data='jpn')
+                     ],
+                     [
+                     InlineKeyboardButton("Polish", callback_data='pol'),
+                     InlineKeyboardButton("Portuguese", callback_data='por'),
+                     InlineKeyboardButton("Russian", callback_data='rus')
+                     ],
+                     [
+                     InlineKeyboardButton("Spanish", callback_data='spa'),
+                     InlineKeyboardButton("Swedish", callback_data='swe'),
+                     InlineKeyboardButton("Turkish", callback_data='tur')
+                     ]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.message.reply_text("Select the Language Here 👇", reply_markup=reply_markup)
 
@@ -71,7 +93,7 @@ def button(update,context):
     filepath=context.user_data['filepath']
     query = update.callback_query
     query.answer()
-    query.edit_message_text("Extracting Text....")
+    query.edit_message_text("Dang giai nen...")
     data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={API_KEY}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=1&isTable=True&scale=True")
     data=data.json()
     if data['IsErroredOnProcessing']==False:
@@ -87,7 +109,6 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
-    dp.add_handler(CommandHandler('eng',callback_data='eng'))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
