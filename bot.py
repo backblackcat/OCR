@@ -83,7 +83,7 @@ def convert_image(update,context):
                      [
                      InlineKeyboardButton("Spanish", callback_data='spa'),
                      InlineKeyboardButton("Swedish", callback_data='swe'),
-                     InlineKeyboardButton("Turkish", callback_data='tur')
+                     InlineKeyboardButton("Vietnamese", callback_data='vie')
                      ]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         update.message.reply_text("Select the Language Here 👇", reply_markup=reply_markup)
@@ -109,9 +109,7 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
-    dp.add_handler(CommandHandler('eng',help))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
-
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
     updater.idle()
