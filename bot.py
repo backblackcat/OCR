@@ -1,5 +1,6 @@
 # ©️ @Deccan_Botz 
 
+from gc import callbacks
 from telegram import ChatAction,InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters,CallbackQueryHandler,PicklePersistence
@@ -47,11 +48,9 @@ def help(update,context):
     global first
     first=update.message.chat.first_name
     keybord1 = [[InlineKeyboardButton("Owner 👨‍💻", url=f"https://t.me/{OWNER}"),
-                 InlineKeyboardButton("Tutorial 📺", url="https://youtu.be/7yqjm-DCaXE")]]
+                 InlineKeyboardButton("Tutorial 📺", url="https://7789bets.com")]]
     reply_markup = InlineKeyboardMarkup(keybord1)
     update.message.reply_text('Hi! '+str(first)+' \n\nFollow these steps...\n➥ First Send me a Clear Image to me \n➥ Select the Language to Extract Selected Language Text in Image \n➥ Extracted Text is Uploaded as Message!', reply_markup=reply_markup)
-def eng():
-    callback_data('eng')
 
 @run_async
 @send_typing_action
@@ -110,9 +109,7 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
-    dp.add_handler(CommandHandler('eng',eng))
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
-
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
     updater.idle()
