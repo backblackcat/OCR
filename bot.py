@@ -94,7 +94,7 @@ def button(update,context):
     query = update.callback_query
     query.answer()
     query.edit_message_text("Dang giai nen...")
-    data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={API_KEY}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=1&isTable=True&scale=True")
+    data=requests.get(f"https://api.ocr.space/parse/imageurl?apikey={API_KEY}&url={filepath}&language={query.data}&detectOrientation=True&filetype=JPG&OCREngine=3&isTable=True&scale=True")
     data=data.json()
     if data['IsErroredOnProcessing']==False:
         message=data['ParsedResults'][0]['ParsedText']
@@ -109,6 +109,7 @@ def main():
     dp=updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('help',help))
+
     dp.add_handler(MessageHandler(Filters.photo, convert_image))
     dp.add_handler(CallbackQueryHandler(button))
     updater.start_polling(clean=True)
